@@ -1,0 +1,54 @@
+.up-arrow{
+    width : 0;
+    height: 0;
+    border-style: solid  ;
+    border-color:transparent transparent black transparent ;
+    border-width: 0px 7px 14px 7px;
+    right : 14%;
+    top: 31%;
+    position: absolute;
+    transition: 0.5s ;
+    cursor: pointer;
+}
+.down-arrow{
+    width : 0;
+    height: 0;
+    border-style: solid  ;
+    border-color:black transparent transparent transparent ;
+    border-width: 14px 7px 0 7px;    
+    right : 14%;
+    top: 31%;
+    position: absolute;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.search-box{
+    width : 220px;
+    height: 20px;
+    border: solid black 1px;
+    position: absolute;
+    left: 40px;
+    top: 30%;
+}
+
+.open-drop-menu{
+    width : 220px;
+    height : 200px;
+    border : solid gray 0.5px;
+    transition: 0.7s;
+    position: absolute;
+    left: 40px;
+    top: 35.5%;       
+}
+.closed-drop-menu{
+    width : 220px;
+    height: 0px; 
+    left: 40px;
+    left: 40px;
+    top: 35.5%; 
+    position: absolute;
+    transition: 0.7s;
+}
+#display{
+    font-size: 90%;
+}

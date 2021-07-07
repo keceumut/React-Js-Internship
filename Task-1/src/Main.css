@@ -1,0 +1,12 @@
+.manin{
+    width : 300px;
+    height: 400px;
+    border: solid grey 2px;
+    top : 20px;
+    left : 50%;
+    transform: translate(-50%,0%);
+    position: absolute;
+}
+h1{
+    padding-left: 40px;
+}
