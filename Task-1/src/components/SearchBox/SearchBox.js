@@ -1,37 +1,22 @@
-import React, {Component } from 'react'
+import React, {useState } from 'react'
 import './SearchBox.css';
 import DropMenu from '../DropMenu/DropMenu';
-class SearchBox extends Component{
-    constructor(props){
-        super(props);
 
-        this.state = {
-            open : false,
-            value : '',
-        };
+function SearchBox(){
 
-        this.selectCountry = this.selectCountry.bind(this);
-    }
-
-    selectCountry(country){
-        this.setState({value: country})
-    }
-
-    render(){        
+    const [open,setOpen] = useState(false);
+    const [value,setValue] = useState('');   
         
         return(
             <div>                
-                <div className='search-box' id ='display'>{this.state.value && this.state.value}</div>
+                <div className='search-box' id ='display'>{value && value }</div>
                 {/*drop down arrow with css-only*/}
-                <div className = {this.state.open ? 'up-arrow' : 'down-arrow'} onClick = {()=> this.setState({open : !this.state.open})}></div>
-                <div className = {this.state.open ? 'open-drop-menu' : 'closed-drop-menu'}>
-                <DropMenu open = {this.state.open} selectCountry = {this.selectCountry}/>                
+                <div className = {open ? 'up-arrow' : 'down-arrow'} onClick = {()=> setOpen({open : !open})}></div>
+                <div className = {open ? 'open-drop-menu' : 'closed-drop-menu'}>
+                <DropMenu open = {open} setValue = {setValue}/>                
                 </div>
-            </div>
-        
-        
+            </div>      
         )
-    }
 }
 
 export default SearchBox;
