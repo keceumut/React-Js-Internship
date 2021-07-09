@@ -3,33 +3,25 @@ import './DropMenu.css';
 import Countries from '../../data/Countries.json';
 import List from '../List/List.js';
 
-function DropMenu(props){     
-
+function DropMenu(props){   
     
     const [value,setValue] = useState('');
     const [countries,setCountries] = useState(Countries);    
     
     function handleclick(targetValue){  
-        setValue(targetValue)  ;  
-        setValue(targetValue + '');
-        //setValue(targetValue);
-        console.log(targetValue);
-        
-        setTimeout(findCountry,10);    
+        setValue(targetValue.charAt(0).toUpperCase() + targetValue.slice(1))  ;  
+        setCountries(Countries);      
     } 
-    /*
-    useEffect(()=> {
-        console.log(value);
-    }
     
-    )*/
+    useEffect((value)=> {
+        findCountry();    
+    },[value]
+    );
+
     function findCountry(){  
         
         let newList =[]; 
 
-        setCountries(Countries);
-        //setValue(value.charAt(0).toUpperCase() + value.slice(1));
-        console.log(value);
         for(let i=0;i<countries.length;i++){     
 
             if(countries[i].includes(value)) {
@@ -37,7 +29,6 @@ function DropMenu(props){
             }
 
         }
-        //console.log(newList);
         setCountries(newList);
         
     } 
@@ -48,7 +39,7 @@ function DropMenu(props){
                     className = {props.open ? 'open-input' : 'closed-input' } 
                     type='text' 
                     value={value}
-                    onInput = {e=> handleclick(e.target.value)}                        
+                    onChange = {e=> handleclick(e.target.value)}                        
                     />
                 <List countries = {countries} open = {props.open} setCountry = {props.setValue}/>
             </div>            
