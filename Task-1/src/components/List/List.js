@@ -1,41 +1,33 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './List.css';
 
-class List extends Component{     
-    render(){               
-        var listCountrys = this.props.countries.map((countries)=> <CountryListItem value ={countries} key ={countries} selectCountry={this.props.selectCountry}/>);
+function List(props){   
+                 
+        var listCountrys = props.countries.map((countries)=> <CountryListItem value ={countries} key ={countries} setCountry={props.setCountry}/>);
+
         return(            
-            <ul className = {this.props.open ? 'opened-list': 'closed-list'}>{listCountrys}</ul>
+            <ul className = {props.open ? 'opened-list': 'closed-list'}>{listCountrys}</ul>
         )
-    }
+    
 }
 
-class CountryListItem extends Component{
-    constructor(props){
-        super(props);
+function CountryListItem(props){
+    
+    const[value,setValue] = useState(props.value);    
 
-        this.state ={
-            value: '',            
-        };
-
-        this.handleClick = this.handleClick.bind(this);  
-        this.selectCountry = this.selectCountry.bind(this);      
-    } 
-
-    handleClick(event){
-        this.setState({value : this.props.value});
-        setTimeout(this.selectCountry,1);        
+    function handleClick(event){
+        setValue(props.value)
+        setTimeout(selectCountry,1);        
     }
 
-    selectCountry(){
-        this.props.selectCountry(this.state.value);
+    function selectCountry(){
+       props.setCountry(value);
     }
-
-    render(){
+    
         return(
-            <li className ='list' value = {this.props.value} onClick = {this.handleClick}>{this.props.value}</li>
+            <li className ='list' value = {props.value} onClick = {handleClick}>{props.value}</li>
         )
-    }
+    
 
 }
 

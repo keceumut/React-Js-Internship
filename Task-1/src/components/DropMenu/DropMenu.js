@@ -1,56 +1,58 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import './DropMenu.css';
 import Countries from '../../data/Countries.json';
 import List from '../List/List.js';
-class DropMenu extends Component{     
-    constructor(props){
-        super(props);
 
-        this.state = {
-            value : '',
-            countries : Countries,
-        };
+function DropMenu(props){     
 
-        this.findCountry = this.findCountry.bind(this);
-        this.handleclick = this.handleclick.bind(this);
+    
+    const [value,setValue] = useState('');
+    const [countries,setCountries] = useState(Countries);    
+    
+    function handleclick(targetValue){  
+        setValue(targetValue)  ;  
+        setValue(targetValue + '');
+        //setValue(targetValue);
+        console.log(targetValue);
+        
+        setTimeout(findCountry,10);    
+    } 
+    /*
+    useEffect(()=> {
+        console.log(value);
     }
-
-    handleclick(event){
-        this.setState({value : event.target.value});
-        setTimeout(this.findCountry,1);    
-    }    
-
-    findCountry(){  
+    
+    )*/
+    function findCountry(){  
         
         let newList =[]; 
 
-        this.setState({countries : Countries,value : this.state.value.charAt(0).toUpperCase() + this.state.value.slice(1)});
+        setCountries(Countries);
+        //setValue(value.charAt(0).toUpperCase() + value.slice(1));
+        console.log(value);
+        for(let i=0;i<countries.length;i++){     
 
-        for(let i=0;i<this.state.countries.length;i++){     
-
-            if(this.state.countries[i].includes(this.state.value)) {
-                newList.push(this.state.countries[i]);                
+            if(countries[i].includes(value)) {
+                newList.push(countries[i]);                
             }
 
         }
-
-        this.setState({countries : newList});
-        this.render();
+        //console.log(newList);
+        setCountries(newList);
+        
     } 
 
-    render(){         
         return(
             <div>
                 <input  
-                    className = {this.props.open ? 'open-input' : 'closed-input' } 
+                    className = {props.open ? 'open-input' : 'closed-input' } 
                     type='text' 
-                    value={this.state.value}
-                    onChange = {this.handleclick}                        
+                    value={value}
+                    onInput = {e=> handleclick(e.target.value)}                        
                     />
-                <List countries = {this.state.countries} open = {this.props.open} selectCountry = {this.props.selectCountry}/>
+                <List countries = {countries} open = {props.open} setCountry = {props.setValue}/>
             </div>            
         )
-    }
 
 }
 export default DropMenu;
