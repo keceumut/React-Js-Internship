@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { InputGroup,FormControl,Button,Container,Row ,Col,Alert,Overlay} from 'react-bootstrap'
+import { useState } from 'react'
+import { InputGroup,FormControl,Button,Container,Row ,Col,Alert} from 'react-bootstrap'
 import UserInfo from '../data/user-information.json'
 
 export default function InputFields(){
@@ -8,8 +8,9 @@ export default function InputFields(){
     const [password,setPassword] = useState("");
     const [access,setAccess] = useState(false);
     const [show,setShow] = useState(false);
-    const [target,setTarget] = useState('');
-    const ref = useRef(null);
+    const [alrClr,setalrClr] = useState('');
+    const [alrMsg,setalrMsg] =useState('');
+    
 
     function checkFields(){
         if(username === "" || password==="") return true;
@@ -17,12 +18,14 @@ export default function InputFields(){
     }
 
     function handleLeaving(event){
-        console.log(ref);
+
         if(event.target.value.length <4){
-            setTarget(event.target.placeholder);
             setShow(true);
+            setalrClr('warning');
+            setalrMsg('You need to enter at least 3 characters for Username/Password')
         } 
         else setShow(false);
+
     }
 
     function handleClick(){
@@ -31,28 +34,33 @@ export default function InputFields(){
 
     function checkPass(){
         setShow(true);
-        setTarget('alert')
+
         for(let i=0;i<UserInfo.length;i++){
-            if(UserInfo[i].username === username && UserInfo[i].password === password){                
-                return true;
-            }
+
+            if(UserInfo[i].username === username && UserInfo[i].password === password){
+                setalrClr('success');
+                setalrMsg('Access Granted')                
+                return true;                
+            }            
             else {
-                return false;
-            }
+                setalrClr('danger');
+                setalrMsg('Wrong Password / Username');                
+            }  
+
         }
+
+        return false;
     }     
 
     return(
-        <Container fluid='lg' >           
+        <Container fluid='lg'>           
             <Row className='justify-content-center'>                           
                 <Col md='5'>
                     <InputGroup className='mb-3' size='lg' >
-                        <FormControl placeholder ='username' onChange={e=>setUsername(e.target.value)} onBlur={e=> handleLeaving(e)} ref={ref}></FormControl>
-                    </InputGroup>  
-                   
-            
+                        <FormControl placeholder ='username' onChange={e=>setUsername(e.target.value)} onBlur={e=> handleLeaving(e)}></FormControl>
+                    </InputGroup>              
                     <InputGroup className='mb-3' size='lg'>
-                        <FormControl placeholder='password' onChange={e=>setPassword(e.target.value)} onBlur={e=> handleLeaving(e)}  ref={ref}></FormControl>
+                        <FormControl placeholder='password' onChange={e=>setPassword(e.target.value)} onBlur={e=> handleLeaving(e)}></FormControl>
                     </InputGroup>
                     <Button 
                         variant='light' 
@@ -63,23 +71,9 @@ export default function InputFields(){
                         onClick={()=>handleClick()}
                     >Log-In
                     </Button>
-                    <Alert show={show && target === 'alert' ? true : false} variant={access ? 'success' : 'danger'} onClose={()=>setShow(false)} dismissible >
-                        {access ? 'Access Granted' : 'Wrong Password / Username'}
-                    </Alert>
-                    <Overlay target={ref.current} show={show} placement='bottom'>
-                        {(props)=>
-                            <div
-                            {...props}
-                            style={{
-                                backgroundColor: '#999999',
-                                color: 'black',
-                                ...props.style,
-                            }}
-                            >
-                                popup
-                            </div>
-                        }
-                    </Overlay>
+                    <Alert show={show} variant={alrClr} onClose={()=>setShow(false)} dismissible >
+                        {alrMsg}
+                    </Alert>                    
                 </Col>   
 
             </Row>
