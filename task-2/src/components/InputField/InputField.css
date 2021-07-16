@@ -35,3 +35,17 @@
   .lg-button.btn:disabled{
     background-color: #eeeddd;
   }
+  .cl-button.btn.btn-danger{
+    background-color: #555555;
+    border: none;
+    margin: 10px;
+    margin-left: 80%;
+  }
+  .modal-content.modal-denied{
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+  .modal-content.modal-granted{
+    color: #155724;
+    background-color: #d4edda;
+  }

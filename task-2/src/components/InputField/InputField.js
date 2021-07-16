@@ -1,5 +1,6 @@
 import { useState} from 'react'
-import { InputGroup,FormControl,Button,Container,Row ,Col,Alert,Overlay} from 'react-bootstrap'
+import { InputGroup,FormControl,Button,Container,Row ,Col,Overlay,Modal} from 'react-bootstrap'
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import UserInfo from '../../data/user-information.json'
 import './InputField.css'
 
@@ -14,8 +15,12 @@ export default function InputFields(){
 
     function checkFields(){
 
-        if(username === "" || password==="") return true;
-        else return false;    
+        if(username === "" || password===""){
+            return true;
+        }
+        else{
+            return false;
+        }     
 
     }
 
@@ -24,7 +29,9 @@ export default function InputFields(){
         if(event.target.value.length <3){
             setShowPopper(true);
         } 
-        else setShowPopper(false);
+        else{
+            setShowPopper(false);
+        }
 
         setTargetRef(event.target);
     }
@@ -33,7 +40,9 @@ export default function InputFields(){
         setShowAlert(true);
         for(let i=0;i<UserInfo.length;i++){
 
-            if(UserInfo[i].username === username && UserInfo[i].password === password)return true;
+            if(UserInfo[i].username === username && UserInfo[i].password === password) {
+                return true;
+            }
 
         }
         return false;
@@ -57,10 +66,7 @@ export default function InputFields(){
                         block
                         onClick={()=>setAccess(checkPass)}
                     >Log-In
-                    </Button>                    
-                    <Alert show={showAlert} variant={access ? 'success' : 'danger'} onClose={()=>setShowAlert(false)} dismissible >
-                        {access ? 'Access granted' : 'Wrong Password/Username'}
-                    </Alert>                    
+                    </Button>                 
                 </Col>
             </Row>
             <Overlay target={targetRef} show={showPopper} placement='bottom'>
@@ -73,6 +79,10 @@ export default function InputFields(){
                     </div>
                     )}
             </Overlay>  
+            <Modal show={showAlert} onHide={()=>setShowAlert(false)} contentClassName={access ? 'modal-granted' : 'modal-denied'} centered>
+                <ModalHeader closeButton >{access ? 'Access granted' : 'Wrong Password/Username'}</ModalHeader>
+                <Button variant='danger' className='cl-button' size='sm' onClick={()=>setShowAlert(false)}>Close</Button>
+            </Modal>
         </Container>         
     )
 }
