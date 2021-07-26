@@ -1,0 +1,50 @@
+.container{
+    margin-top: 5px;
+}
+.col{
+    padding: 3px;
+}
+.left-arrow{
+    width: 40px;
+    height: 40px;
+    background-color: #555555;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    margin-left: 2px;
+}
+.left-arrow:disabled{
+    display: none;
+    cursor: default;
+    background-color: black;
+}
+.line{
+    background-color: #333333;
+    width: 35px;
+    height: 5px;
+    top: 17.5px;
+    left: 2.5px;
+    border-radius: 10px;
+    position: absolute;
+}
+.line::after{
+    position: absolute;
+    content: '';
+    width: 17.5px;
+    height: 5px;
+    bottom: -6.5px;
+    background-color:#333333;
+    border-radius: 10px;
+    transform:rotateZ(45deg);    
+}
+.line::before{
+        position: absolute;
+        content: '';
+        width: 17.5px;
+        height: 5px;
+        top: -6.5px;
+        background-color:#333333;
+        border-radius: 10px;
+        transform:rotateZ(-45deg);    
+}
