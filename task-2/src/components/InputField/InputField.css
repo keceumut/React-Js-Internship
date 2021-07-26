@@ -1,0 +1,51 @@
+.lg-button{
+    margin-top : 30px;
+    margin-bottom :15px;
+  }.mb-3{
+    margin-top: 30px;
+  }
+  .popbox.show{
+    display: block;
+    position: absolute;
+    z-index: 5;
+    background-color: #fff3cd;
+    border-radius: 2px;
+    margin-top: 5px;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .popbox{
+      display: none;
+  }
+  .popbox::before{
+    content: '';
+    z-index: 5;
+    position: absolute;
+    border-top: none;
+    border-right: 5px solid transparent;
+    border-left :5px solid transparent;
+    border-bottom: 5px solid #fff3cd;
+    top: -4px;
+    left: 50%;
+  }
+  .lg-button.btn{
+    background-color: #eeeedd;
+  }
+  .lg-button.btn:disabled{
+    background-color: #eeeddd;
+  }
+  .cl-button.btn.btn-danger{
+    background-color: #555555;
+    border: none;
+    margin: 10px;
+    margin-left: 80%;
+  }
+  .modal-content.modal-denied{
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+  .modal-content.modal-granted{
+    color: #155724;
+    background-color: #d4edda;
+  }
