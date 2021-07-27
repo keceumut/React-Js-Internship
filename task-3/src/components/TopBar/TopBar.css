@@ -1,6 +1,5 @@
 #episode.nav-link{
     color: #eeeedd;
-    font-size: ;
 }
 #character.nav-link{
     color: #eeeedd;
@@ -22,6 +21,25 @@
 }
 .navbar-light{
     border-bottom: #999999 solid 2px;
+}
+.mb-3{
+    position: absolute;
+    top: 10px;
+    margin-left: 15px;
+    width: 5px;
+}
+.input-group>.form-control{
+    width: 150px !important;
+    flex: none !important;
+    padding: 0;
+    border: none;
+}
+.mglass{
+    background-color: white;
+    cursor: pointer;
+}
+.navbar-brand{
+    cursor: pointer;
 }
 
 

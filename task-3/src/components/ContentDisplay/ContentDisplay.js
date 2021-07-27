@@ -1,17 +1,24 @@
 import './ContentDisplay.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import CharacterCard from '../CharacterCard/CharacterCard';
-import {Row,Col, Container} from 'react-bootstrap';
-
+import DisplayTable from '../DisplayTable/DisplayTable';
+import CharacterInfo from '../CharacterInfo/CharacterInfo';
 export default function ContentDisplay(props){
     
     const [data,setData] = useState([]);
-    const url= 'https://rickandmortyapi.com/api/' + props.content;
-    const [list,setList] = useState([]);
     const [page,setPage] = useState(1);
+    const [url,setUrl] = useState(`https://rickandmortyapi.com/api/${props.content}?page=${page}`)
+    const [show,setShow] = useState(false);
+    const [item,setItem] = useState();
 
-    
+    useEffect(()=>{
+        setPage(1);
+    },[props.content]
+    );
+    useEffect(()=>{
+        setUrl(`https://rickandmortyapi.com/api/${props.content}?page=${page}&name=${props.subject}`);
+    },[page,props.content,props.subject]
+    );
     useEffect(()=>{
         const getData = async () => {
             setData((await axios.get(url)).data.results);         
@@ -19,40 +26,33 @@ export default function ContentDisplay(props){
         getData();
     },[url]
     );
-    useEffect(()=>{        
-        setList(data.map((data)=><CharacterCard content={props.content} key={data.id} object={data}/>))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[data]
-    )
-
+    
+    function handleClose(){
+        setShow(false);
+    }
+    function nextPage(){
+        setPage(page+1);
+    }
+    function prevPage(){
+        setPage(page-1);
+    }
     return(
         <div>
-        <div className='left-arrow' disabled={page === 1 ? true:false}><div className='line'/></div>
-        <Container>
-        <Row lg={5} md={4} sm={3} xs={2}>
-            <Col>{list[0]}</Col>
-            <Col>{list[1]}</Col>
-            <Col>{list[2]}</Col>
-            <Col>{list[3]}</Col>
-            <Col>{list[4]}</Col>
-            <Col>{list[5]}</Col>
-            <Col>{list[6]}</Col>
-            <Col>{list[7]}</Col>
-            <Col>{list[8]}</Col>
-            <Col>{list[9]}</Col>
-            <Col>{list[10]}</Col>
-            <Col>{list[11]}</Col>
-            <Col>{list[12]}</Col>
-            <Col>{list[13]}</Col>
-            <Col>{list[14]}</Col>
-            <Col>{list[15]}</Col>
-            <Col>{list[16]}</Col>
-            <Col>{list[17]}</Col>
-            <Col>{list[18]}</Col>
-            <Col>{list[19]}</Col>
-        </Row>
-        </Container>
-        <div className='right-arrow'/>
+        <div className='left-arrow' onClick={prevPage}><div className='line'/></div>
+        <DisplayTable 
+            content={props.content} 
+            data={data} 
+            setShow={setShow} 
+            setItem={setItem}
+        />
+        <div className='right-arrow' onClick={nextPage}><div className='line'/></div>
+        <CharacterInfo
+            show={show}
+            handleClose={handleClose}
+            item={item}
+            content={props.content}
+            setItem={setItem}
+        />
         </div>
     )
 }

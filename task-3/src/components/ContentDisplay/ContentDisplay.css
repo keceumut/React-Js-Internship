@@ -1,23 +1,33 @@
-.container{
-    margin-top: 5px;
-}
-.col{
-    padding: 3px;
-}
 .left-arrow{
     width: 40px;
     height: 40px;
     background-color: #555555;
     border-radius: 100%;
-    position: absolute;
+    position: fixed;
     top: 50%;
     cursor: pointer;
-    margin-left: 2px;
+    margin-left: 5px;
+    left: 0;
+    z-index: 3;
 }
 .left-arrow:disabled{
-    display: none;
-    cursor: default;
-    background-color: black;
+    pointer-events: none;
+    cursor: progress;
+}
+.right-arrow{
+    width: 40px;
+    height: 40px;
+    background-color: #555555;
+    border-radius: 100%;
+    position:fixed;
+    top: 50%;
+    cursor: pointer;
+    margin-right: 5px;
+    right: 0;
+    z-index: 3;
+}
+.right-arrow .line{
+    transform: rotateZ(180deg);
 }
 .line{
     background-color: #333333;

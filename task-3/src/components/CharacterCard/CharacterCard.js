@@ -1,11 +1,11 @@
 import { useState,useEffect } from 'react'
 import { Card } from 'react-bootstrap'
+//import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import './CharacterCard.css'
 
 export default function CharacterCard(props){
 
     const [imgsrc,setImgSrc] = useState(null);
-
     useEffect(() => {
         if(props.content === 'character'){
             setImgSrc(props.object.image);
@@ -18,13 +18,18 @@ export default function CharacterCard(props){
         }
     }, [props])
     
-
+    function handleClick(){
+        props.setShow(true);
+        props.setItem(props.object);
+    }
     return(
-        <Card>
+        <div>
+        <Card onClick={handleClick}>
             <Card.Img variant='top' src={imgsrc}/>
             <Card.Text>
                 {props.object.name}
             </Card.Text>
         </Card>
+        </div>
     )
 }

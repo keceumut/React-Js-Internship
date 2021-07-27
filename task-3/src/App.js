@@ -6,11 +6,12 @@ import { useState } from 'react';
 function App() {
 
   const [content,setContent] = useState('character');
+  const [sesubject,setSeSubject] = useState("");
 
   return (
     <div className='App'>
-      <TopBar setContent={setContent}></TopBar>
-      <ContentDisplay content={content}></ContentDisplay>
+      <TopBar setContent={setContent} setSeSubject={setSeSubject}></TopBar>
+      <ContentDisplay content={content} subject={sesubject}></ContentDisplay>
     </div>
 
   );

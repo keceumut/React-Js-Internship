@@ -1,0 +1,50 @@
+.modal-content .card{
+    width: 200px;
+    margin: 10px;
+    margin-bottom: 0;
+    border: none;
+    background-color: #555555;
+}
+.modal-content .card-text{
+    position: absolute;
+    bottom: 0;
+    padding-left: 15px;
+    background-color: #555555;
+    width: 100%;
+    text-align: left;
+    opacity: 0.8;
+    color: #ffffff;
+    z-index: 5;
+    height: 25px;
+    top: 175px;
+}
+.list-group-item{
+    padding-left: 10px;
+    background-color: #555555;
+    color: #ffffff;
+    cursor: default;
+}
+.modal-content{
+    background-color:  #333333;
+    min-height: auto;
+    overflow-y: auto;
+    width: 80vw;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+}
+.modal-header{
+    border-bottom: #555555 solid 1px;
+    right: 0px;
+    top: 0px;
+    color: #ffffff;
+}
+.path{
+    cursor: pointer;
+}
+.episodes{
+    right: 0;
+}
+
