@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { ListGroupItem,ListGroup } from 'react-bootstrap';
@@ -36,6 +37,7 @@ export default function CardInModal(props){
                         element=>[element,
                         <ListGroupItem onClick={()=>handleCharacter(obj.url)} key={obj.id}>
                             {obj.name}
+                            <img className='sm-image' src={obj.image}/>
                         </ListGroupItem>
                         ]
                     )
@@ -45,6 +47,7 @@ export default function CardInModal(props){
                         element=>[element,
                         <ListGroupItem onClick={()=>handleCharacter(obj.url)} key={obj.id}>
                             {obj.name}
+                            <img className='sm-image' src={obj.image}/>
                         </ListGroupItem>
                         ]
                     )
