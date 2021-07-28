@@ -49,7 +49,6 @@ export default function CharacterInfo(props){
                             <ListGroupItem className='path' onClick={handleClick}>Location : {props.item.location.name}</ListGroupItem>
                         </ListGroup>                        
                     </Card> 
-                    <CardInModal list={props.item.episode} setPath={setPath} content={cont} setCont={setCont} show={props.show}/>   
                     </div>               
                 )                
             }
@@ -63,7 +62,6 @@ export default function CharacterInfo(props){
                             <ListGroupItem>Air-Date = {props.item.air_date}</ListGroupItem>
                             <ListGroupItem>Episode = {props.item.episode}</ListGroupItem>
                         </ListGroup>
-                    <CardInModal content={cont} setPath={setPath} show={props.show} list={props.item.characters} setCont={setCont}/>
                     </Card>
                     </div>
                 )
@@ -77,8 +75,7 @@ export default function CharacterInfo(props){
                             <ListGroupItem>Type={props.item.type}</ListGroupItem>
                             <ListGroupItem>Dimension={props.item.dimension}</ListGroupItem>
                         </ListGroup>
-                        <CardInModal content={cont} setPath={setPath} show={props.show} list={props.item.residents} setCont={setCont}/>
-                    </Card>
+                        </Card>
                 )
             }
         }
@@ -92,7 +89,8 @@ export default function CharacterInfo(props){
             <Modal.Header closeButton>{props.show ? props.item.name : null}</Modal.Header>                
             <Modal.Body>
             {element}
-            </Modal.Body>          
+            {<CardInModal list={props.show ? props.item : null} setPath={setPath} content={cont} setCont={setCont}/>
+            }</Modal.Body>          
         </Modal>
     )
 }

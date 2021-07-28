@@ -24,9 +24,11 @@
 }
 .mb-3{
     position: absolute;
+    right: 0;
     top: 10px;
     margin-left: 15px;
-    width: 5px;
+    height: 32px;
+    width: 182px !important;    
 }
 .input-group>.form-control{
     width: 150px !important;
@@ -37,6 +39,8 @@
 .mglass{
     background-color: white;
     cursor: pointer;
+    position: absolute;
+    right: 0;
 }
 .navbar-brand{
     cursor: pointer;
