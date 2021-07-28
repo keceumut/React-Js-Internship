@@ -1,82 +1,85 @@
 /* eslint-disable jsx-a11y/alt-text */
 import axios from 'axios';
 import { useEffect, useState } from 'react'
-import { ListGroupItem,ListGroup } from 'react-bootstrap';
+import { ListGroupItem,ListGroup,Image } from 'react-bootstrap';
 import './CardInModal.css'
 
 export default function CardInModal(props){
 
-    const [element,setElement] = useState(null);
+    const [listDisplay,setListDisplay] = useState(null);
 
     function handleClick(text){
         props.setPath(text);
-        props.setCont('episode');
+        props.setModalContent('episode');
     }
 
     function handleCharacter(text){
         props.setPath(text);
-        props.setCont('character');
+        props.setModalContent('character');
     }
+
     useEffect(()=>{
-        setElement(null);
-    },[props.content])
+        setListDisplay(null);
+    },[props.modalContent]);
+
     useEffect(()=>{
-        if(element===null){
-            if(props.content==='character'){
-                props.list.episode.forEach(thing=>{
+        if(listDisplay===null){
+
+            if(props.modalContent==='character'){
+                props.list.episode.forEach(element=>{
                     const getData=async()=>{
-                        let obj=((await axios.get(thing)).data);
-                        setElement(
-                            element=>[element,
-                                <ListGroupItem onClick={()=>handleClick(obj.url)} key={obj.id}>
-                                <div className='ep-name'>{obj.name}</div>
-                                <div className='ep-no'>{obj.episode}</div>
-                                </ListGroupItem>
-                                ]
+                        let obj=((await axios.get(element)).data);
+                        setListDisplay(listDisplay=>
+                            [listDisplay,
+                            <ListGroupItem onClick={()=>handleClick(obj.url)} key={obj.id}>
+                            <div className='ep-name'>{obj.name}</div>
+                            <div className='ep-no'>{obj.episode}</div>
+                            </ListGroupItem>]
                         )
                     }
                     getData();
                 })
             }
-            else if(props.content==='episode'){
-                props.list.characters.forEach(thing=>{
+
+            else if(props.modalContent==='episode'){
+                props.list.characters.forEach(element=>{
                     const getData=async()=>{
-                        let obj=((await axios.get(thing)).data);
-                        setElement(
-                            element=>[element,
+                        let obj=((await axios.get(element)).data);
+                        setListDisplay(listDisplay=>
+                            [listDisplay,
                             <ListGroupItem onClick={()=>handleCharacter(obj.url)} key={obj.id}>
                             {obj.name}
-                            <img className='sm-image' src={obj.image}/>
-                            </ListGroupItem>
-                            ]
+                            <Image className='sm-image' src={obj.image}/>
+                            </ListGroupItem>]
                         )
                     }
                     getData();
                 })
             }
+
             else{
-                props.list.residents.forEach(thing=>{
+                props.list.residents.forEach(element=>{
                     const getData=async()=>{
-                        let obj=((await axios.get(thing)).data);
-                        setElement(
-                            element=>[element,
+                        let obj=((await axios.get(element)).data);
+                        setListDisplay(listDisplay=>
+                            [listDisplay,
                             <ListGroupItem onClick={()=>handleCharacter(obj.url)} key={obj.id}>
                             {obj.name}
-                            <img className='sm-image' src={obj.image}/>
-                            </ListGroupItem>
-                            ]
+                            <Image className='sm-image' src={obj.image}/>
+                            </ListGroupItem>]
                         )
                     }
                     getData();
                 })
             }
+
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.list])
+    },[props.list]);
+
     return (
         <ListGroup className='small-list'>
-            {element}
+            {listDisplay}
         </ListGroup>
-        
     )
 }

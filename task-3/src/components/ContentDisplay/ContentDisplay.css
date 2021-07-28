@@ -1,7 +1,7 @@
 .left-arrow{
     width: 40px;
     height: 40px;
-    background-color: #555555;
+    background-color: #eeeedd;
     border-radius: 100%;
     position: fixed;
     top: 50%;
@@ -9,18 +9,24 @@
     margin-left: 5px;
     left: 0;
     z-index: 3;
+    border: none;
 }
 .left-arrow:disabled{
+    background-color: #555555;
     pointer-events: none;
     cursor: progress;
+}
+.left-arrow:focus, .left-arrow:hover{
+    background-color: #ffffdd;
 }
 .right-arrow{
     width: 40px;
     height: 40px;
-    background-color: #555555;
+    background-color: #eeeedd;
     border-radius: 100%;
     position:fixed;
     top: 50%;
+    border: none;
     cursor: pointer;
     margin-right: 5px;
     right: 0;
@@ -28,6 +34,15 @@
 }
 .right-arrow .line{
     transform: rotateZ(180deg);
+}
+.right-arrow:disabled{
+    background-color: #555555;
+    pointer-events: none;
+    cursor: progress;
+    opacity: 0.5;
+}
+.right-arrow:focus, .right-arrow:hover{
+    background-color: #ffffdd;
 }
 .line{
     background-color: #333333;
@@ -44,6 +59,7 @@
     width: 17.5px;
     height: 5px;
     bottom: -6.5px;
+    left: 0px;
     background-color:#333333;
     border-radius: 10px;
     transform:rotateZ(45deg);    
@@ -53,6 +69,7 @@
         content: '';
         width: 17.5px;
         height: 5px;
+        left: 0px;
         top: -6.5px;
         background-color:#333333;
         border-radius: 10px;
