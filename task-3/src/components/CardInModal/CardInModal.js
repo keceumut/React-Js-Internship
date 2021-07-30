@@ -25,7 +25,7 @@ export default function CardInModal(props){
     useEffect(()=>{
         if(listDisplay===null){
 
-            if(props.modalContent==='character'){
+            if(props.modalContent==='character' && props.list !== null){
                 props.list.episode.forEach(element=>{
                     const getData=async()=>{
                         let obj=((await axios.get(element)).data);
@@ -41,7 +41,7 @@ export default function CardInModal(props){
                 })
             }
 
-            else if(props.modalContent==='episode'){
+            else if(props.modalContent==='episode' && props.list !== null){
                 props.list.characters.forEach(element=>{
                     const getData=async()=>{
                         let obj=((await axios.get(element)).data);
@@ -57,7 +57,7 @@ export default function CardInModal(props){
                 })
             }
 
-            else{
+            else if(props.modalContent==='location' && props.list !== null){
                 props.list.residents.forEach(element=>{
                     const getData=async()=>{
                         let obj=((await axios.get(element)).data);
