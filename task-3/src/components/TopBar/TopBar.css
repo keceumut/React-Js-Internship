@@ -1,0 +1,49 @@
+#episode.nav-link{
+    color: #eeeedd;
+}
+#character.nav-link{
+    color: #eeeedd;
+}
+#location.nav-link{
+    color: #eeeedd;
+}
+.navbar-light.bg-secondary{
+    background-color: #333333 !important;
+    padding: 0px;
+}
+.navbar-light .navbar-brand{
+    color: #006400 !important;
+    text-shadow: -1.5px 0.5px #00FF00;
+    margin-left: 5px;
+    font-family: 'Creepster', cursive;
+    font-size: 35px;
+    padding: 0px;
+}
+.navbar-light{
+    border-bottom: #999999 solid 2px;
+}
+.mb-3{
+    position: absolute;
+    right: 0;
+    top: 10px;
+    margin-left: 15px;
+    height: 32px;
+    width: 182px !important;    
+}
+.input-group>.form-control{
+    width: 150px !important;
+    flex: none !important;
+    padding: 0;
+    border: none;
+}
+.mglass{
+    background-color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.navbar-brand{
+    cursor: pointer;
+}
+
+
